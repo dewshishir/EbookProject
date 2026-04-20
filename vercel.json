@@ -1,0 +1,25 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "ebookshelf/ebookshelf/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      },
+      {
+        "src": "ebookshelf/static/**/*",
+        "use": "@vercel/static"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "ebookshelf/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "ebookshelf/ebookshelf/wsgi.py"
+      }
+    ]
+  }
+  
